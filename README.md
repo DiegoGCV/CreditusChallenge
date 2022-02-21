@@ -1,28 +1,23 @@
 # CreditusChallenge
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.3.
+## Needed Dependencies
+> Front End
+- Angular v 13.2.3
+- Angular Material v 13.2.3
+> Backend
+- express
+- sqlite3
 
-## Development server
+# Run Project
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+> Front-end (by default runs on port `4200`)
+- Open the project folder 
+- Run `npm install` to install the needed dependencies
+- Run `npm start` to run the project
+- Navigate to `http://localhost:4200/`.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-# CreditusChallenge
+> Backend (by default runs on port `3000`)
+- Open the the folder `creditus-api` inside the project folder
+- Run `npm install` to install the needed dependencies
+- Run `node app.js` to run the backend

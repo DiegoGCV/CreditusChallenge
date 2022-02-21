@@ -1,0 +1,17 @@
+.full-width-elem{
+    width: 100%;
+}
+
+.sticky-note{
+    background-image: url('../assets/sticky-note.png');
+    background-size: cover;
+    background-position-y: -0.2em;
+}
+
+.align-to-end{
+    text-align: end;
+}
+
+.post-card{
+    margin-bottom: 1em;
+}
