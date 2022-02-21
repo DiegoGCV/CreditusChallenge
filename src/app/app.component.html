@@ -1,5 +1,5 @@
 <section>
-  <mat-card class="post-card">
+  <mat-card class="main-card">
     <mat-card-header>
       <div mat-card-avatar class="sticky-note"></div>
       <mat-card-title>New Post</mat-card-title>
@@ -24,13 +24,13 @@
     </mat-card-actions>
   </mat-card>
 
-  <mat-card *ngFor="let post of postList">
-    <mat-card-title>{{post.title}}</mat-card-title>
+  <mat-card class="post-card" *ngFor="let post of postList" [ngClass]="{'new-card': post.isNew ==='1'}">
+    <mat-card-title class="title">{{post.title}}</mat-card-title>
     <mat-card-content>
       {{post.content}}
     </mat-card-content>
     <mat-card-actions class="align-to-end">
-      Created At: {{post.createdAt}}
+      Created At: <span>{{post.createdAt}}</span>
     </mat-card-actions>
   </mat-card>
 

@@ -1,6 +1,12 @@
-import { ApiService } from './services/api.service';
+// Angular
 import { Component, OnInit } from '@angular/core';
+
+//Interfaces
 import { Post } from './interfaces/post.interface';
+
+// Services
+import { SnackBarService } from './services/snackbar.service';
+import { ApiService } from './services/api.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,18 +14,24 @@ import { Post } from './interfaces/post.interface';
 })
 export class AppComponent implements OnInit {
   title = 'creditus-challenge';
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private snackBService:SnackBarService) {}
   postList: Post[] = [];
   postTitle: string = "";
   postContent: string = "";
 
   ngOnInit(): void {
-    this.apiService.getPosts().subscribe(val => this.setData(val))
-  }
 
-  setData(val: any)
-  {
-    this.postList = val.data;
+    this.apiService.getPosts().subscribe({
+      next: (data:any) => {
+        this.postList = data.data
+        console.log(this.postList)
+      },
+      error: (error: any) => {
+        this.snackBService.openSnackBar('There was an error loading posts','Close')
+        console.error('Error: ', error);
+      }
+    })
+
   }
 
   post()
@@ -32,12 +44,13 @@ export class AppComponent implements OnInit {
     
     this.apiService.postRequest(fdata).subscribe({
       next: (data:any) => {
-          this.postList.unshift(data.data)
+        data.data.isNew = '1'
+        this.postList.unshift(data.data)
       },
       error: (error: any) => {
-          console.error('There was an error!', error);
+        this.snackBService.openSnackBar('There was an error creating the post','Close')
+        console.error('There was an error!', error);
       }
-  })
-    console.log(this.postList)
+    })
   }
 }
