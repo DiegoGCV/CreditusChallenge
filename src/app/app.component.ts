@@ -16,6 +16,7 @@ export class AppComponent implements OnInit {
   title = 'creditus-challenge';
   constructor(private apiService: ApiService, private snackBService:SnackBarService) {}
   postList: Post[] = [];
+  originalPList: Post[] = [];
   postTitle: string = "";
   postContent: string = "";
 
@@ -23,8 +24,8 @@ export class AppComponent implements OnInit {
 
     this.apiService.getPosts().subscribe({
       next: (data:any) => {
-        this.postList = data.data
-        console.log(this.postList)
+        this.originalPList = data.data
+        this.postList = [...this.originalPList]
       },
       error: (error: any) => {
         this.snackBService.openSnackBar('There was an error loading posts','Close')
@@ -44,6 +45,9 @@ export class AppComponent implements OnInit {
     
     this.apiService.postRequest(fdata).subscribe({
       next: (data:any) => {
+        let copy = Object.assign({}, data.data)
+        this.originalPList.unshift(copy)
+        
         data.data.isNew = '1'
         this.postList.unshift(data.data)
       },
@@ -53,4 +57,13 @@ export class AppComponent implements OnInit {
       }
     })
   }
+
+  onSearchChange(event: any): void {  
+    if(event.target.value =='') this.postList = [...this.originalPList];
+        else{
+            this.postList = this.originalPList.filter(
+                item => item.title.toLowerCase().includes(event.target.value.toLowerCase()));
+        }
+  }
+  
 }

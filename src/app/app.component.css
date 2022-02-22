@@ -38,3 +38,8 @@
         opacity: 1;
      }
 }
+
+.card-actions{
+    justify-content: space-between;
+    display: flex;
+}

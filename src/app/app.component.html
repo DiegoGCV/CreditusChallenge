@@ -19,8 +19,13 @@
             [(ngModel)]="postContent"></textarea>
       </mat-form-field>
     </mat-card-content>
-    <mat-card-actions class="align-to-end">
-      <button mat-raised-button color="primary" (click)="post()" [disabled]="postTitle=='' || postContent==''">POST</button>
+    <mat-card-actions class="card-actions">
+      <mat-form-field appearance="fill">
+        <mat-label>Search</mat-label>
+        <input matInput (input)="onSearchChange($event)">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+     <button mat-raised-button color="primary" (click)="post()" [disabled]="postTitle=='' || postContent==''">POST</button>
     </mat-card-actions>
   </mat-card>
 
